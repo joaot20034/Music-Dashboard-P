@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { 
-  Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Disc3
+  Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, 
+  Heart, Shuffle, Repeat, Mic2, ListMusic, MonitorSpeaker, Disc3
 } from 'lucide-react';
-import { IconButton } from '../ui/IconButton';
 import { Slider } from '../ui/Slider';
 import { usePlayer } from '../../hooks/usePlayer';
 import { CanopyWaveform } from './CanopyWaveform';
+
 
 export function Player() {
   const { currentTrack, isPlaying, togglePlay, volume, setVolume } = usePlayer();
@@ -40,7 +41,7 @@ export function Player() {
   }
 
   return (
-    <div className="flex h-full flex-col items-center py-10 px-6">
+    <div className="flex h-full flex-col items-center pt-10 pb-12 px-6 overflow-y-auto custom-scrollbar">
       
       {/* =========================================
           TOP GROUP (Vinyl, Waveform, Metadata) 
@@ -86,13 +87,27 @@ export function Player() {
       </div>
 
       {/* =========================================
-          BOTTOM GROUP (Progress, Controls, Volume) 
-          'mt-auto' pushes this to the very bottom!
+          BOTTOM GROUP (Progress, Controls, Utilities) 
       ========================================= */}
       <div className="mt-auto flex w-full flex-col items-center">
         
+        {/* Track Metadata with Favorite Button */}
+        <div className="mb-8 flex w-full items-center justify-between px-6">
+          <div className="flex flex-col text-left flex-1 truncate pr-4">
+            <h2 className="truncate font-serif text-3xl font-bold text-[var(--text-main)] drop-shadow-md cursor-pointer hover:text-[var(--accent-gold)] transition-colors duration-500">
+              {currentTrack.title}
+            </h2>
+            <p className="truncate text-lg font-light text-[var(--text-muted)] drop-shadow-sm cursor-pointer hover:text-white transition-colors duration-500">
+              {currentTrack.artistName}
+            </p>
+          </div>
+          <button className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:border-[#A88054]/30 hover:bg-[#A88054]/10 active:scale-95">
+            <Heart className="h-5 w-5 text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--accent-gold)]" strokeWidth={1.5} />
+          </button>
+        </div>
+
         {/* Sleek Inline Progress Bar */}
-        <div className="mb-8 w-full px-2">
+        <div className="mb-10 w-full px-6">
           <div className="flex items-center gap-4">
             <span className="w-8 text-right text-[10px] font-medium tracking-wider text-[var(--text-muted)] opacity-60">
               {formatTime((progress / 100) * totalDuration)}
@@ -107,37 +122,59 @@ export function Player() {
         </div>
 
         {/* Minimalist Master Controls */}
-        <div className="mb-10 flex items-center justify-center gap-12">
-          {/* Previous Button */}
-          <button className="text-[var(--text-main)] opacity-40 transition-all duration-300 ease-out hover:scale-105 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95 active:duration-100">
-            <SkipBack className="h-5 w-5 fill-current" strokeWidth={1} />
-          </button>
-          
-          {/* Refined Play Button (Reduced size, soft shadow, tactile press) */}
-          <button 
-            onClick={togglePlay}
-            className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-gold)] shadow-[0_6px_16px_-4px_rgba(200,168,107,0.3)] transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_10px_20px_-4px_rgba(200,168,107,0.4)] active:scale-95 active:duration-100"
-          >
-            {isPlaying ? (
-              <Pause className="h-6 w-6 fill-[var(--background)] text-[var(--background)]" strokeWidth={1.5} />
-            ) : (
-              <Play className="ml-1 h-6 w-6 fill-[var(--background)] text-[var(--background)] transition-transform duration-300 ease-out group-hover:scale-105" strokeWidth={1.5} />
-            )}
+        <div className="mb-10 flex w-full items-center justify-between px-8">
+          <button className="text-[var(--text-muted)] opacity-60 transition-all duration-300 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95">
+            <Shuffle className="h-4 w-4" strokeWidth={1.5} />
           </button>
 
-          {/* Next Button */}
-          <button className="text-[var(--text-main)] opacity-40 transition-all duration-300 ease-out hover:scale-105 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95 active:duration-100">
-            <SkipForward className="h-5 w-5 fill-current" strokeWidth={1} />
+          <div className="flex items-center gap-8">
+            <button className="text-[var(--text-main)] opacity-50 transition-all duration-300 ease-out hover:scale-105 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95">
+              <SkipBack className="h-6 w-6 fill-current" strokeWidth={1} />
+            </button>
+            
+            <button 
+              onClick={togglePlay}
+              className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-gold)] shadow-[inset_0_2px_4px_rgba(255,255,255,0.3),_0_6px_16px_-4px_rgba(0,0,0,0.6)] transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),_0_10px_20px_-4px_rgba(0,0,0,0.7)] active:scale-95 active:shadow-inner"
+            >
+              {isPlaying ? (
+                <Pause className="h-6 w-6 fill-[var(--background)] text-[var(--background)]" strokeWidth={1.5} />
+              ) : (
+                <Play className="ml-1 h-6 w-6 fill-[var(--background)] text-[var(--background)] transition-transform duration-300 ease-out group-hover:scale-105" strokeWidth={1.5} />
+              )}
+            </button>
+
+            <button className="text-[var(--text-main)] opacity-50 transition-all duration-300 ease-out hover:scale-105 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95">
+              <SkipForward className="h-6 w-6 fill-current" strokeWidth={1} />
+            </button>
+          </div>
+
+          <button className="text-[var(--text-muted)] opacity-60 transition-all duration-300 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95">
+            <Repeat className="h-4 w-4" strokeWidth={1.5} />
           </button>
         </div>
 
-        {/* Compact Volume Control */}
-        <div className="flex w-full max-w-[160px] items-center gap-3 opacity-70 transition-opacity duration-300 ease-out hover:opacity-100">
-          <button onClick={() => setVolume(volume === 0 ? 80 : 0)} className="text-[var(--text-main)] transition-colors duration-300 hover:text-[var(--accent-gold)] active:scale-95 active:duration-100">
-            {volume === 0 ? <VolumeX className="h-4 w-4" strokeWidth={1.5} /> : <Volume2 className="h-4 w-4" strokeWidth={1.5} />}
-          </button>
-          <div className="flex-1">
-            <Slider value={volume} onChange={(e) => setVolume(Number(e.target.value))} />
+        {/* Studio Utilities (Lyrics, Devices, Queue, Volume) */}
+        <div className="recessed-wood flex w-full items-center justify-between px-6 py-5 shadow-inner">
+          <div className="flex items-center gap-5">
+            <button className="text-[var(--text-muted)] opacity-70 transition-all duration-300 hover:scale-105 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95">
+              <Mic2 className="h-4 w-4" strokeWidth={1.5} />
+            </button>
+            <button className="text-[var(--text-muted)] opacity-70 transition-all duration-300 hover:scale-105 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95">
+              <ListMusic className="h-4 w-4" strokeWidth={1.5} />
+            </button>
+            <button className="text-[var(--text-muted)] opacity-70 transition-all duration-300 hover:scale-105 hover:text-[var(--accent-gold)] hover:opacity-100 active:scale-95">
+              <MonitorSpeaker className="h-4 w-4" strokeWidth={1.5} />
+            </button>
+          </div>
+
+          {/* Compact Volume */}
+          <div className="flex w-[120px] items-center gap-3 opacity-70 transition-opacity duration-300 ease-out hover:opacity-100">
+            <button onClick={() => setVolume(volume === 0 ? 80 : 0)} className="text-[var(--text-main)] transition-colors duration-300 hover:text-[var(--accent-gold)] active:scale-95">
+              {volume === 0 ? <VolumeX className="h-4 w-4" strokeWidth={1.5} /> : <Volume2 className="h-4 w-4" strokeWidth={1.5} />}
+            </button>
+            <div className="flex-1">
+              <Slider value={volume} onChange={(e) => setVolume(Number(e.target.value))} />
+            </div>
           </div>
         </div>
         
