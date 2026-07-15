@@ -4,7 +4,6 @@ import { Play, UserPlus } from 'lucide-react';
 import { MusicService } from '../services/api';
 import { TrackList } from '../components/shared/TrackList';
 import { MediaCard } from '../components/shared/MediaCard';
-import { SectionHeader } from '../components/shared/SectionHeader';
 import { Button } from '../components/ui/Button';
 import { IconButton } from '../components/ui/IconButton';
 import { usePlayer } from '../hooks/usePlayer';
