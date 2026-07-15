@@ -21,8 +21,8 @@ export function MainLayout() {
           <TopBar />
           
           {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto px-6 pb-24 pt-6 custom-scrollbar">
-            {/* AnimatePresence handles the unmounting animation of the previous page */}
+          {/* FIX: Changed pb-24 to pb-8 since the player no longer overlaps */}
+          <div className="flex-1 overflow-y-auto px-6 pb-8 pt-6 custom-scrollbar">
             <AnimatePresence mode="wait">
               <motion.div
                 key={location.pathname}
@@ -40,7 +40,8 @@ export function MainLayout() {
       </div>
 
       {/* Bottom Section: Music Player */}
-      <div className="absolute bottom-0 z-50 h-[90px] w-full border-t border-[hsl(var(--border))] bg-[hsl(var(--background))]/95 backdrop-blur-lg flex items-center justify-center">
+      {/* FIX: Removed 'absolute bottom-0', added 'shrink-0' so it sits perfectly at the bottom of the flex column */}
+      <div className="z-50 h-[90px] w-full shrink-0 border-t border-[hsl(var(--border))] bg-[hsl(var(--background))]/95 backdrop-blur-lg flex items-center justify-center">
         <Player />
       </div>
 
