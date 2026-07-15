@@ -1,7 +1,8 @@
 import playlistsData from '../data/playlists.json';
 import albumsData from '../data/albums.json';
 import songsData from '../data/songs.json';
-import type { IPlaylist, IAlbum, ITrack } from '../types';
+import artistsData from '../data/artists.json'; // NEW: Import artists data
+import type { IPlaylist, IAlbum, ITrack, IArtist } from '../types';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -15,7 +16,7 @@ export const MusicService = {
     await delay(600);
     return albumsData as IAlbum[];
   },
-  
+
   getPlaylistById: async (id: string): Promise<IPlaylist | undefined> => {
     await delay(400);
     return playlistsData.find(p => p.id === id) as IPlaylist | undefined;
@@ -56,5 +57,21 @@ export const MusicService = {
       playlists: playlistsData.slice(0, 2) as IPlaylist[],
       albums: albumsData.slice(1, 3) as IAlbum[]
     };
-  }
+  },
+  getArtistById: async (id: string): Promise<IArtist | undefined> => {
+    await delay(400);
+    return artistsData.find(a => a.id === id) as IArtist | undefined;
+  },
+
+  getAlbumsByArtist: async (artistId: string): Promise<IAlbum[]> => {
+    await delay(400);
+    return albumsData.filter(a => a.artistId === artistId) as IAlbum[];
+  },
+
+  getTopTracksByArtist: async (artistId: string): Promise<ITrack[]> => {
+    await delay(400);
+    // In a real database, we would query tracks by artistId and sort by play count.
+    // Here we just return tracks matching the artist.
+    return songsData.filter(t => t.artistId === artistId) as ITrack[];
+  },
 };

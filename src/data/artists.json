@@ -1,0 +1,18 @@
+[
+  {
+    "id": "art1",
+    "name": "The Midnight",
+    "bio": "The Midnight is a synthwave band consisting of singer-songwriter Tyler Lyle and producer Tim McEwan. Their signature sound fuses 80s nostalgia with modern pop sensibilities.",
+    "imageUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80",
+    "followerCount": 845000,
+    "monthlyListeners": 2100500
+  },
+  {
+    "id": "art4",
+    "name": "FM-84",
+    "bio": "FM-84 is the story of a French producer crafting the sound of a summer that never ends. Nostalgic, cinematic pop.",
+    "imageUrl": "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=800&q=80",
+    "followerCount": 420000,
+    "monthlyListeners": 1150000
+  }
+]

@@ -4,8 +4,10 @@ import { MainLayout } from '../layouts/MainLayout';
 
 const Home = lazy(() => import('../pages/Home'));
 const Search = lazy(() => import('../pages/Search'));
-const Library = lazy(() => import('../pages/Library')); // NEW: Import actual library page
+const Library = lazy(() => import('../pages/Library'));
 const Playlist = lazy(() => import('../pages/Playlist'));
+const Album = lazy(() => import('../pages/Album'));
+const Artist = lazy(() => import('../pages/Artist')); // NEW: Import Artist page
 
 const PageLoader = () => (
   <div className="flex h-full w-full items-center justify-center">
@@ -18,38 +20,12 @@ export const router = createBrowserRouter([
     path: '/',
     element: <MainLayout />,
     children: [
-      {
-        index: true,
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <Home />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'search',
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <Search />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'library',
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <Library />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'playlist/:id',
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <Playlist />
-          </Suspense>
-        ),
-      },
+      { index: true, element: <Suspense fallback={<PageLoader />}><Home /></Suspense> },
+      { path: 'search', element: <Suspense fallback={<PageLoader />}><Search /></Suspense> },
+      { path: 'library', element: <Suspense fallback={<PageLoader />}><Library /></Suspense> },
+      { path: 'playlist/:id', element: <Suspense fallback={<PageLoader />}><Playlist /></Suspense> },
+      { path: 'album/:id', element: <Suspense fallback={<PageLoader />}><Album /></Suspense> },
+      { path: 'artist/:id', element: <Suspense fallback={<PageLoader />}><Artist /></Suspense> }, // NEW: Added Artist route
     ]
   },
 ]);
