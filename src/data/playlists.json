@@ -1,0 +1,26 @@
+[
+  {
+    "id": "p1",
+    "title": "Deep Focus",
+    "description": "Keep calm and focus with ambient and post-rock music.",
+    "creator": "MusicDash",
+    "coverUrl": "https://images.unsplash.com/photo-1558021212-51b6ec9c9225?w=500&q=80",
+    "trackCount": 42
+  },
+  {
+    "id": "p2",
+    "title": "Midnight Drive",
+    "description": "Synthwave and retrowave tracks for the night road.",
+    "creator": "MusicDash",
+    "coverUrl": "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=500&q=80",
+    "trackCount": 28
+  },
+  {
+    "id": "p3",
+    "title": "Acoustic Morning",
+    "description": "Start your day right with gentle acoustic melodies.",
+    "creator": "MusicDash",
+    "coverUrl": "https://images.unsplash.com/photo-1485579149621-3123dd979885?w=500&q=80",
+    "trackCount": 55
+  }
+]

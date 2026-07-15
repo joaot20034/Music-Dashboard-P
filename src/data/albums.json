@@ -1,0 +1,38 @@
+[
+  {
+    "id": "a1",
+    "title": "Neon Nights",
+    "artistId": "art1",
+    "artistName": "The Midnight",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=500&q=80",
+    "releaseYear": 2023,
+    "totalTracks": 12
+  },
+  {
+    "id": "a2",
+    "title": "Ethereal Echoes",
+    "artistId": "art2",
+    "artistName": "Luna Shadows",
+    "coverUrl": "https://images.unsplash.com/photo-1619983081563-430f63602796?w=500&q=80",
+    "releaseYear": 2024,
+    "totalTracks": 9
+  },
+  {
+    "id": "a3",
+    "title": "Urban Symphony",
+    "artistId": "art3",
+    "artistName": "Kaelin Ellis",
+    "coverUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&q=80",
+    "releaseYear": 2023,
+    "totalTracks": 15
+  },
+  {
+    "id": "a4",
+    "title": "Analog Dreams",
+    "artistId": "art4",
+    "artistName": "FM-84",
+    "coverUrl": "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=500&q=80",
+    "releaseYear": 2022,
+    "totalTracks": 10
+  }
+]
