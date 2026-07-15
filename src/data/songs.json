@@ -1,0 +1,38 @@
+[
+  {
+    "id": "t1",
+    "title": "Neon Skyline",
+    "artistId": "art1",
+    "artistName": "The Midnight",
+    "albumId": "a1",
+    "albumName": "Neon Nights",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=150&q=80",
+    "duration": 214,
+    "audioUrl": "mock-url-1.mp3",
+    "isLiked": true
+  },
+  {
+    "id": "t2",
+    "title": "Vampires",
+    "artistId": "art1",
+    "artistName": "The Midnight",
+    "albumId": "a1",
+    "albumName": "Neon Nights",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=150&q=80",
+    "duration": 185,
+    "audioUrl": "mock-url-2.mp3",
+    "isLiked": false
+  },
+  {
+    "id": "t3",
+    "title": "Night Drive",
+    "artistId": "art4",
+    "artistName": "FM-84",
+    "albumId": "a4",
+    "albumName": "Analog Dreams",
+    "coverUrl": "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=150&q=80",
+    "duration": 240,
+    "audioUrl": "mock-url-3.mp3",
+    "isLiked": true
+  }
+]
