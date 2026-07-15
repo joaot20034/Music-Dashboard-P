@@ -14,5 +14,19 @@ export const MusicService = {
   getTrendingAlbums: async (): Promise<IAlbum[]> => {
     await delay(600);
     return albumsData as IAlbum[];
+  },
+  
+  searchAll: async (query: string): Promise<{ albums: IAlbum[], playlists: IPlaylist[] }> => {
+    await delay(400); // Simulate network latency
+    if (!query) return { albums: [], playlists: [] };
+    
+    const lowerQuery = query.toLowerCase();
+    const filteredAlbums = albumsData.filter(a => a.title.toLowerCase().includes(lowerQuery) || a.artistName.toLowerCase().includes(lowerQuery));
+    const filteredPlaylists = playlistsData.filter(p => p.title.toLowerCase().includes(lowerQuery));
+    
+    return {
+      albums: filteredAlbums as IAlbum[],
+      playlists: filteredPlaylists as IPlaylist[]
+    };
   }
 };
