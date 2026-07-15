@@ -2,9 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import { MusicService } from '../services/api';
 import { MediaCard } from '../components/shared/MediaCard';
 import { SectionHeader } from '../components/shared/SectionHeader';
+import { usePlayer } from '../hooks/usePlayer';
+import toast from 'react-hot-toast';
 
 export default function Home() {
-  // Using React Query to fetch the mock data asynchronously
+  const { playTrack, setQueue } = usePlayer();
+
   const { data: playlists, isLoading: loadingPlaylists } = useQuery({
     queryKey: ['featured-playlists'],
     queryFn: MusicService.getFeaturedPlaylists,
@@ -15,12 +18,31 @@ export default function Home() {
     queryFn: MusicService.getTrendingAlbums,
   });
 
-  // A helper function to dynamically greet the user based on the time of day
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return 'Good morning';
     if (hour < 18) return 'Good afternoon';
     return 'Good evening';
+  };
+
+  // Handles clicking a media card to play its contents
+  const handlePlayMedia = async (mediaId: string, mediaTitle: string) => {
+    try {
+      const loadingToast = toast.loading(`Loading ${mediaTitle}...`);
+      const tracks = await MusicService.getTracksForMedia(mediaId);
+      
+      toast.dismiss(loadingToast);
+      
+      if (tracks.length > 0) {
+        setQueue(tracks);
+        playTrack(tracks[0]);
+        toast.success(`Playing ${mediaTitle}`);
+      } else {
+        toast.error("No tracks found");
+      }
+    } catch (error) {
+      toast.error("Failed to play media");
+    }
   };
 
   return (
@@ -41,6 +63,7 @@ export default function Home() {
                 title={playlist.title}
                 subtitle={playlist.description}
                 imageUrl={playlist.coverUrl}
+                onClick={() => handlePlayMedia(playlist.id, playlist.title)}
               />
             ))}
       </div>
@@ -57,6 +80,7 @@ export default function Home() {
                 title={album.title}
                 subtitle={album.artistName}
                 imageUrl={album.coverUrl}
+                onClick={() => handlePlayMedia(album.id, album.title)}
               />
             ))}
       </div>
