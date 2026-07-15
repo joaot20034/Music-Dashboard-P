@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Backgrounds */
+    --background: #2F241D; /* Deep Walnut Wood */
+    --surface: #3B3532; /* Warm Charcoal */
+    --surface-oak: #5A4638; /* Natural Oak */
+    
+    /* Accents */
+    --primary: #3F6B4B; /* Forest Green */
+    --secondary: #7C9A6D; /* Sage Green */
+    --accent-gold: #C8A86B; /* Vintage Gold */
+    
+    /* Typography */
+    --text-main: #F5F2EB; /* Warm Ivory */
+    --text-muted: #C4B8A9; /* Muted Stone */
+    
+    /* UI Elements */
+    --border: #6E5C50; /* Soft Brown */
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--text-main)] font-sans antialiased selection:bg-[var(--secondary)] selection:text-[var(--background)];
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-wide;
+  }
+}
+
+/* Elegant, thin scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-[var(--border)] rounded-full;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-[var(--accent-gold)];
+}

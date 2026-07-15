@@ -30,7 +30,7 @@ export default function Home() {
         {getGreeting()}
       </h1>
 
-      <SectionHeader title="Featured Playlists" />
+      <SectionHeader title="Forest Sessions"/>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {loadingPlaylists
           ? Array.from({ length: 5 }).map((_, i) => (
@@ -47,7 +47,7 @@ export default function Home() {
             ))}
       </div>
 
-      <SectionHeader title="Trending Albums" />
+      <SectionHeader title="Vinyl Collection"/>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {loadingAlbums
           ? Array.from({ length: 5 }).map((_, i) => (
