@@ -1,72 +1,88 @@
-import { useQuery } from '@tanstack/react-query';
-import { Clock, Award, Headphones, ShieldCheck } from 'lucide-react';
-import { MusicService } from '../services/api';
+import { Clock, Headphones, Award } from 'lucide-react';
 
 export default function Profile() {
-  const { data: user, isLoading } = useQuery({
-    queryKey: ['user-profile'],
-    queryFn: MusicService.getUserProfile,
-  });
-
-  if (isLoading) {
-    return (
-      <div className="flex h-[50vh] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[hsl(var(--surface))] border-t-[hsl(var(--primary))]"></div>
-      </div>
-    );
-  }
-
-  if (!user) return null;
+  const user = {
+    name: "Alex Developer",
+    email: "alex@example.com",
+    isPremium: true,
+    listeningTimeHours: 1420,
+  };
 
   return (
-    <div className="pb-8 xl:max-w-5xl">
-      <div className="mb-10 flex flex-col items-center gap-8 md:flex-row md:items-end">
-        <div className="h-40 w-40 shrink-0 overflow-hidden rounded-full shadow-2xl md:h-48 md:w-48">
-          <img src={user.avatarUrl} alt={user.name} className="h-full w-full object-cover" />
-        </div>
+    <div className="pb-8 xl:max-w-4xl mx-auto">
+      
+      {/* Profile Header Block */}
+      <div className="mb-12 flex flex-col items-start gap-8 sm:flex-row sm:items-center">
         
-        <div className="flex flex-col items-center text-center md:items-start md:text-left">
-          <span className="mb-2 text-xs font-bold uppercase tracking-wider text-[hsl(var(--text-muted))]">
+        {/* Profile Image in a Recessed Wood Well */}
+        <div className="recessed-wood relative flex h-40 w-40 shrink-0 items-center justify-center rounded-full shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+          <div className="absolute inset-0 rounded-full border-[8px] border-[var(--surface-oak)] shadow-[inset_0_4px_10px_rgba(0,0,0,0.6)] mix-blend-multiply opacity-50 pointer-events-none z-10"></div>
+          <img
+            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80"
+            alt="Profile"
+            className="h-36 w-36 rounded-full object-cover shadow-inner"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <span className="mb-1 text-xs font-bold tracking-[0.2em] text-[var(--accent-gold)] uppercase drop-shadow-sm">
             Profile
           </span>
-          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl">
+          <h1 className="font-serif text-5xl font-bold tracking-tight text-[var(--text-main)] mb-3 drop-shadow-lg">
             {user.name}
           </h1>
-          <div className="flex items-center gap-3">
-            {user.premium && (
-              <span className="flex items-center gap-1 rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-sm font-medium text-[hsl(var(--primary))]">
-                <ShieldCheck className="h-4 w-4" />
-                Premium
-              </span>
-            )}
-            <span className="text-sm text-[hsl(var(--text-muted))]">{user.email}</span>
+          <div className="flex items-center gap-4 text-sm font-light text-[var(--text-muted)]">
+            <span className="flex items-center gap-1 rounded-full border border-[#A88054]/50 bg-[#A88054]/10 px-3 py-1 text-[var(--accent-gold)] shadow-inner">
+              {user.isPremium && "Premium"}
+            </span>
+            <span>{user.email}</span>
           </div>
         </div>
       </div>
 
-      <h2 className="mb-6 font-serif text-2xl font-bold text-[var(--text-main)] border-b border-[var(--border)] pb-2">
+      {/* Vintage Dotted Divider */}
+      <div className="mb-10 w-full border-t-[3px] border-dotted border-[var(--accent-gold)] opacity-30 shadow-[0_1px_0_rgba(255,255,255,0.1)]"></div>
+
+      {/* Statistics Section */}
+      <h2 className="mb-8 font-serif text-3xl font-bold text-[var(--text-main)] shadow-[0_1px_0_rgba(255,255,255,0.05)]">
         Your Statistics
       </h2>
-      <div className="grid gap-6 sm:grid-cols-3">
-        {/* Card 1 */}
-        <div className="flex flex-col items-center justify-center rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 text-center shadow-warm transition-transform hover:-translate-y-1">
-          <Clock className="mb-4 h-8 w-8 text-[var(--accent-gold)]" />
-          <span className="font-serif text-4xl font-bold text-[var(--text-main)]">{user.listeningTimeHours}</span>
-          <span className="mt-2 text-sm font-light tracking-wide text-[var(--text-muted)] uppercase">Hours Listened</span>
-        </div>
-        
-        {/* Card 2 */}
-        <div className="flex flex-col items-center justify-center rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 text-center shadow-warm transition-transform hover:-translate-y-1">
-          <Headphones className="mb-4 h-8 w-8 text-[var(--accent-gold)]" />
-          <span className="font-serif text-4xl font-bold text-[var(--text-main)]">1,204</span>
-          <span className="mt-2 text-sm font-light tracking-wide text-[var(--text-muted)] uppercase">Artists Discovered</span>
+
+      <div className="grid gap-8 sm:grid-cols-3">
+        {/* Stat Card 1 */}
+        <div className="relative flex flex-col items-center justify-center rounded-2xl panel-wood p-8 text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.9)]">
+          <div className="brass-screw top-3 left-3" />
+          <div className="brass-screw top-3 right-3" />
+          <div className="brass-screw bottom-3 left-3" />
+          <div className="brass-screw bottom-3 right-3" />
+
+          <Clock className="mb-4 h-8 w-8 text-[var(--accent-gold)] drop-shadow-md" strokeWidth={1.5} />
+          <span className="font-serif text-4xl font-bold text-[var(--text-main)] drop-shadow-md">{user.listeningTimeHours}</span>
+          <span className="mt-3 text-xs font-medium tracking-[0.1em] text-[var(--text-muted)] uppercase">Hours Listened</span>
         </div>
 
-        {/* Card 3 */}
-        <div className="flex flex-col items-center justify-center rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 text-center shadow-warm transition-transform hover:-translate-y-1">
-          <Award className="mb-4 h-8 w-8 text-[var(--accent-gold)]" />
-          <span className="font-serif text-4xl font-bold text-[var(--text-main)]">Top 5%</span>
-          <span className="mt-2 text-sm font-light tracking-wide text-[var(--text-muted)] uppercase">Synthwave Fan</span>
+        {/* Stat Card 2 */}
+        <div className="relative flex flex-col items-center justify-center rounded-2xl panel-wood p-8 text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.9)]">
+          <div className="brass-screw top-3 left-3" />
+          <div className="brass-screw top-3 right-3" />
+          <div className="brass-screw bottom-3 left-3" />
+          <div className="brass-screw bottom-3 right-3" />
+
+          <Headphones className="mb-4 h-8 w-8 text-[var(--accent-gold)] drop-shadow-md" strokeWidth={1.5} />
+          <span className="font-serif text-4xl font-bold text-[var(--text-main)] drop-shadow-md">1,204</span>
+          <span className="mt-3 text-xs font-medium tracking-[0.1em] text-[var(--text-muted)] uppercase">Artists Discovered</span>
+        </div>
+
+        {/* Stat Card 3 */}
+        <div className="relative flex flex-col items-center justify-center rounded-2xl panel-wood p-8 text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.9)]">
+          <div className="brass-screw top-3 left-3" />
+          <div className="brass-screw top-3 right-3" />
+          <div className="brass-screw bottom-3 left-3" />
+          <div className="brass-screw bottom-3 right-3" />
+
+          <Award className="mb-4 h-8 w-8 text-[var(--accent-gold)] drop-shadow-md" strokeWidth={1.5} />
+          <span className="font-serif text-4xl font-bold text-[var(--text-main)] drop-shadow-md">Top 5%</span>
+          <span className="mt-3 text-xs font-medium tracking-[0.1em] text-[var(--text-muted)] uppercase">Synthwave Fan</span>
         </div>
       </div>
     </div>
