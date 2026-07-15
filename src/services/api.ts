@@ -15,6 +15,17 @@ export const MusicService = {
     await delay(600);
     return albumsData as IAlbum[];
   },
+  
+  getPlaylistById: async (id: string): Promise<IPlaylist | undefined> => {
+    await delay(400);
+    return playlistsData.find(p => p.id === id) as IPlaylist | undefined;
+  },
+
+  // NEW: Fetch a single album by ID
+  getAlbumById: async (id: string): Promise<IAlbum | undefined> => {
+    await delay(400);
+    return albumsData.find(a => a.id === id) as IAlbum | undefined;
+  },
 
   searchAll: async (query: string): Promise<{ albums: IAlbum[], playlists: IPlaylist[] }> => {
     await delay(400);
