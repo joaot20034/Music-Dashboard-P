@@ -1,8 +1,9 @@
 import playlistsData from '../data/playlists.json';
 import albumsData from '../data/albums.json';
 import songsData from '../data/songs.json';
-import artistsData from '../data/artists.json'; // NEW: Import artists data
-import type { IPlaylist, IAlbum, ITrack, IArtist } from '../types';
+import artistsData from '../data/artists.json';
+import userData from '../data/users.json'; // NEW: Import artists data
+import type { IPlaylist, IAlbum, ITrack, IArtist, IUser } from '../types';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -58,6 +59,7 @@ export const MusicService = {
       albums: albumsData.slice(1, 3) as IAlbum[]
     };
   },
+
   getArtistById: async (id: string): Promise<IArtist | undefined> => {
     await delay(400);
     return artistsData.find(a => a.id === id) as IArtist | undefined;
@@ -73,5 +75,9 @@ export const MusicService = {
     // In a real database, we would query tracks by artistId and sort by play count.
     // Here we just return tracks matching the artist.
     return songsData.filter(t => t.artistId === artistId) as ITrack[];
+  },
+  getUserProfile: async (): Promise<IUser> => {
+    await delay(300);
+    return userData as IUser;
   },
 };

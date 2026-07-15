@@ -7,7 +7,9 @@ const Search = lazy(() => import('../pages/Search'));
 const Library = lazy(() => import('../pages/Library'));
 const Playlist = lazy(() => import('../pages/Playlist'));
 const Album = lazy(() => import('../pages/Album'));
-const Artist = lazy(() => import('../pages/Artist')); // NEW: Import Artist page
+const Artist = lazy(() => import('../pages/Artist'));
+const Profile = lazy(() => import('../pages/Profile')); // NEW
+const Settings = lazy(() => import('../pages/Settings')); // NEW
 
 const PageLoader = () => (
   <div className="flex h-full w-full items-center justify-center">
@@ -25,7 +27,9 @@ export const router = createBrowserRouter([
       { path: 'library', element: <Suspense fallback={<PageLoader />}><Library /></Suspense> },
       { path: 'playlist/:id', element: <Suspense fallback={<PageLoader />}><Playlist /></Suspense> },
       { path: 'album/:id', element: <Suspense fallback={<PageLoader />}><Album /></Suspense> },
-      { path: 'artist/:id', element: <Suspense fallback={<PageLoader />}><Artist /></Suspense> }, // NEW: Added Artist route
+      { path: 'artist/:id', element: <Suspense fallback={<PageLoader />}><Artist /></Suspense> },
+      { path: 'profile', element: <Suspense fallback={<PageLoader />}><Profile /></Suspense> }, // NEW
+      { path: 'settings', element: <Suspense fallback={<PageLoader />}><Settings /></Suspense> }, // NEW
     ]
   },
 ]);

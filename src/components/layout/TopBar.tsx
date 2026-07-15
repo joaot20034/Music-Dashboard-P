@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Bell, User, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Settings as SettingsIcon, User, Search } from 'lucide-react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { IconButton } from '../ui/IconButton';
 import { Input } from '../ui/Input';
@@ -45,8 +45,17 @@ export function TopBar() {
       </div>
 
       <div className="flex items-center gap-3">
-        <IconButton size="sm" className="text-[hsl(var(--text-muted))]"><Bell className="h-5 w-5" /></IconButton>
-        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[hsl(var(--surface-hover))] transition-transform hover:scale-105">
+        <IconButton 
+          size="sm" 
+          className="text-[hsl(var(--text-muted))] hover:text-white"
+          onClick={() => navigate('/settings')}
+        >
+          <SettingsIcon className="h-5 w-5" />
+        </IconButton>
+        <button 
+          onClick={() => navigate('/profile')}
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-[hsl(var(--surface-hover))] transition-transform hover:scale-105"
+        >
           <User className="h-5 w-5 text-[hsl(var(--text-muted))]" />
         </button>
       </div>
