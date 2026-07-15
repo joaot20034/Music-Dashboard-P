@@ -4,8 +4,9 @@ import { MainLayout } from '../layouts/MainLayout';
 
 const Home = lazy(() => import('../pages/Home'));
 const Search = lazy(() => import('../pages/Search'));
-const Library = lazy(() => import('../pages/Library')); // NEW: Import actual library page
+const Library = lazy(() => import('../pages/Library'));
 const Playlist = lazy(() => import('../pages/Playlist'));
+const Album = lazy(() => import('../pages/Album')); // NEW: Import Album page
 
 const PageLoader = () => (
   <div className="flex h-full w-full items-center justify-center">
@@ -47,6 +48,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <Playlist />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'album/:id', // NEW: Added Album route
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Album />
           </Suspense>
         ),
       },
