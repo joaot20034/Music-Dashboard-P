@@ -44,7 +44,7 @@ export const MusicService = {
   },
 
   // NEW: Fetch tracks for a specific album or playlist (Mocking by returning our songs dataset)
-  getTracksForMedia: async (mediaId: string): Promise<ITrack[]> => {
+  getTracksForMedia: async (_mediaId: string): Promise<ITrack[]> => {
     await delay(300);
     // In a real app, we'd filter songs by albumId/playlistId. Here we return the mock list.
     return songsData as ITrack[];
