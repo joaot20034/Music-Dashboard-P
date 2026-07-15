@@ -1,62 +1,51 @@
-import { ChevronLeft, ChevronRight, Settings as SettingsIcon, User, Search } from 'lucide-react';
-import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
-import { IconButton } from '../ui/IconButton';
-import { Input } from '../ui/Input';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Home, Search, Library, Settings as SettingsIcon, User } from 'lucide-react';
+import { cn } from '../../utils/cn';
 
 export function TopBar() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  
-  const isSearchPage = location.pathname === '/search';
-  const query = searchParams.get('q') || '';
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      setSearchParams({ q: e.target.value });
-    } else {
-      setSearchParams({});
-    }
-  };
+  const navItems = [
+    { name: 'Home', path: '/', icon: Home },
+    { name: 'Search', path: '/search', icon: Search },
+    { name: 'Library', path: '/library', icon: Library },
+  ];
 
   return (
-    <header className="sticky top-0 z-40 flex h-16 items-center justify-between bg-[hsl(var(--background))]/80 px-6 backdrop-blur-md">
-      <div className="flex items-center gap-4">
-        <div className="flex gap-2">
-          <IconButton size="sm" className="bg-[hsl(var(--surface))] hover:bg-[hsl(var(--surface-hover))]" onClick={() => navigate(-1)}>
-            <ChevronLeft className="h-5 w-5" />
-          </IconButton>
-          <IconButton size="sm" className="bg-[hsl(var(--surface))] hover:bg-[hsl(var(--surface-hover))]" onClick={() => navigate(1)}>
-            <ChevronRight className="h-5 w-5" />
-          </IconButton>
-        </div>
+    <header className="recessed-wood flex h-14 items-center gap-2 rounded-full px-4 backdrop-blur-md">
+      
+      {/* Main Navigation Links */}
+      <nav className="flex items-center gap-1 border-r border-[var(--border)] pr-4">
+        {navItems.map((item) => (
+          <NavLink
+            key={item.name}
+            to={item.path}
+            className={({ isActive }) => cn(
+              "group relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300",
+              isActive 
+                ? "bg-[var(--primary)] text-white shadow-glow-green" 
+                : "text-[var(--text-muted)] hover:bg-[var(--background)] hover:text-white"
+            )}
+          >
+            <item.icon className="h-4 w-4" />
+            <span className="hidden md:block">{item.name}</span>
+          </NavLink>
+        ))}
+      </nav>
 
-        {isSearchPage && (
-          <div className="w-80 max-w-md transition-all duration-300">
-            <Input 
-              icon={<Search className="h-5 w-5" />} 
-              placeholder="What do you want to listen to?"
-              value={query}
-              onChange={handleSearchChange}
-              autoFocus
-            />
-          </div>
-        )}
-      </div>
-
-      <div className="flex items-center gap-3">
-        <IconButton 
-          size="sm" 
-          className="text-[hsl(var(--text-muted))] hover:text-white"
+      {/* Profile & Settings */}
+      <div className="flex items-center gap-2 pl-2">
+        <button 
           onClick={() => navigate('/settings')}
+          className="flex h-10 w-10 items-center justify-center rounded-full text-[var(--text-muted)] transition-colors hover:bg-[var(--background)] hover:text-white"
         >
-          <SettingsIcon className="h-5 w-5" />
-        </IconButton>
+          <SettingsIcon className="h-4 w-4" />
+        </button>
         <button 
           onClick={() => navigate('/profile')}
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-[hsl(var(--surface-hover))] transition-transform hover:scale-105"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-gold)] text-[var(--background)] transition-transform hover:scale-105 hover:shadow-lg"
         >
-          <User className="h-5 w-5 text-[hsl(var(--text-muted))]" />
+          <User className="h-4 w-4" />
         </button>
       </div>
     </header>

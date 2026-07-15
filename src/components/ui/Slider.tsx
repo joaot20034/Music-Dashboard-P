@@ -1,37 +1,34 @@
-import { forwardRef } from 'react';
 import type { InputHTMLAttributes } from 'react';
 import { cn } from '../../utils/cn';
 
-interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   value: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   max?: number;
 }
 
-export const Slider = forwardRef<HTMLInputElement, SliderProps>(
-  ({ className, value, max = 100, ...props }, ref) => {
-    // Calculate the percentage to fill the background linearly
-    const percentage = (value / max) * 100;
+export function Slider({ value, onChange, max = 100, className, ...props }: SliderProps) {
+  const percentage = (value / max) * 100;
 
-    return (
-      <input
-        type="range"
-        ref={ref}
-        value={value}
-        max={max}
-        className={cn(
-          "h-1.5 w-full cursor-pointer appearance-none rounded-full bg-[hsl(var(--surface-hover))] transition-all",
-          "focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))]",
-          // Custom webkit thumb styling
-          "[&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:opacity-0 [&::-webkit-slider-thumb]:transition-opacity hover:[&::-webkit-slider-thumb]:opacity-100",
-          className
-        )}
-        style={{
-          background: `linear-gradient(to right, hsl(var(--text-main)) ${percentage}%, hsl(var(--surface-hover)) ${percentage}%)`,
-        }}
-        {...props}
-      />
-    );
-  }
-);
-
-Slider.displayName = 'Slider';
+  return (
+    <input
+      type="range"
+      value={value}
+      onChange={onChange}
+      max={max}
+      className={cn(
+        "h-1 w-full cursor-pointer appearance-none rounded-full outline-none transition-all duration-300",
+        // The elegant thumb
+        "[&::-webkit-slider-thumb]:h-2.5 [&::-webkit-slider-thumb]:w-2.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--text-main)] [&::-webkit-slider-thumb]:shadow-sm [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:duration-200 [&::-webkit-slider-thumb]:ease-out",
+        // Hover & Active States
+        "hover:[&::-webkit-slider-thumb]:scale-125",
+        "active:[&::-webkit-slider-thumb]:scale-110 active:[&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(200,168,107,0.7)]",
+        className
+      )}
+      style={{
+        background: `linear-gradient(to right, var(--accent-gold) ${percentage}%, var(--surface-oak) ${percentage}%)`,
+      }}
+      {...props}
+    />
+  );
+}

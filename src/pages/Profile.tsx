@@ -44,24 +44,29 @@ export default function Profile() {
         </div>
       </div>
 
-      <h2 className="mb-6 text-2xl font-bold text-white">Your Statistics</h2>
-      <div className="grid gap-4 sm:grid-cols-3">
-        <div className="flex flex-col items-center justify-center rounded-lg bg-[hsl(var(--surface))] p-6 text-center transition-colors hover:bg-[hsl(var(--surface-hover))]">
-          <Clock className="mb-3 h-8 w-8 text-[hsl(var(--primary))]" />
-          <span className="text-3xl font-bold text-white">{user.listeningTimeHours}</span>
-          <span className="mt-1 text-sm text-[hsl(var(--text-muted))]">Hours Listened</span>
+      <h2 className="mb-6 font-serif text-2xl font-bold text-[var(--text-main)] border-b border-[var(--border)] pb-2">
+        Your Statistics
+      </h2>
+      <div className="grid gap-6 sm:grid-cols-3">
+        {/* Card 1 */}
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 text-center shadow-warm transition-transform hover:-translate-y-1">
+          <Clock className="mb-4 h-8 w-8 text-[var(--accent-gold)]" />
+          <span className="font-serif text-4xl font-bold text-[var(--text-main)]">{user.listeningTimeHours}</span>
+          <span className="mt-2 text-sm font-light tracking-wide text-[var(--text-muted)] uppercase">Hours Listened</span>
         </div>
         
-        <div className="flex flex-col items-center justify-center rounded-lg bg-[hsl(var(--surface))] p-6 text-center transition-colors hover:bg-[hsl(var(--surface-hover))]">
-          <Headphones className="mb-3 h-8 w-8 text-[hsl(var(--primary))]" />
-          <span className="text-3xl font-bold text-white">1,204</span>
-          <span className="mt-1 text-sm text-[hsl(var(--text-muted))]">Artists Discovered</span>
+        {/* Card 2 */}
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 text-center shadow-warm transition-transform hover:-translate-y-1">
+          <Headphones className="mb-4 h-8 w-8 text-[var(--accent-gold)]" />
+          <span className="font-serif text-4xl font-bold text-[var(--text-main)]">1,204</span>
+          <span className="mt-2 text-sm font-light tracking-wide text-[var(--text-muted)] uppercase">Artists Discovered</span>
         </div>
 
-        <div className="flex flex-col items-center justify-center rounded-lg bg-[hsl(var(--surface))] p-6 text-center transition-colors hover:bg-[hsl(var(--surface-hover))]">
-          <Award className="mb-3 h-8 w-8 text-[hsl(var(--primary))]" />
-          <span className="text-3xl font-bold text-white">Top 5%</span>
-          <span className="mt-1 text-sm text-[hsl(var(--text-muted))]">Synthwave Fan</span>
+        {/* Card 3 */}
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 text-center shadow-warm transition-transform hover:-translate-y-1">
+          <Award className="mb-4 h-8 w-8 text-[var(--accent-gold)]" />
+          <span className="font-serif text-4xl font-bold text-[var(--text-main)]">Top 5%</span>
+          <span className="mt-2 text-sm font-light tracking-wide text-[var(--text-muted)] uppercase">Synthwave Fan</span>
         </div>
       </div>
     </div>
