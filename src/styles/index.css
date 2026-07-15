@@ -46,3 +46,76 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   @apply bg-[var(--accent-gold)];
 }
+/* =========================================
+   SKEUOMORPHIC WOOD MATERIALS
+========================================= */
+
+/* The main global background (Dark Wood Grain) */
+.wood-bg {
+  background-color: var(--background);
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-blend-mode: multiply;
+}
+
+/* Elevated Wooden Panels (Cards) */
+.panel-wood {
+  background-color: var(--surface);
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-blend-mode: multiply;
+  /* Top white highlight for the edge, heavy black drop shadow for elevation */
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.6);
+  border: 1px solid #1a110b;
+}
+
+/* Carved/Recessed Wood (Top Bar, Vinyl Well, Switch Tracks) */
+.recessed-wood {
+  background-color: #211813;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-blend-mode: multiply;
+  /* Deep inner black shadow, subtle white bottom highlight to show the carved edge */
+  box-shadow: 
+    inset 0 6px 15px rgba(0, 0, 0, 0.9),
+    inset 0 2px 4px rgba(0, 0, 0, 0.8),
+    0 1px 1px rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #0a0705;
+}
+
+/* Brass Screws */
+.brass-screw {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #A88054 0%, #4A3219 100%);
+  border: 1px solid #1a110b;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    0 2px 3px rgba(0, 0, 0, 0.8);
+}
+/* The Philips head slot inside the screw */
+.brass-screw::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.6);
+  transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Large Iron Rivets for the structural beam */
+.iron-rivet {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #555 0%, #222 100%);
+  border: 1px solid #111;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    0 4px 6px rgba(0, 0, 0, 0.8);
+}
